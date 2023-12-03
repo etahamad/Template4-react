@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import welcome from "../imgs/welcome.png";
 const Dashboard = () => {
   return (
     <main>
@@ -10,7 +11,7 @@ const Dashboard = () => {
               welcome
               <span className="block mt-2.5 text-lg  text-shades">elzero</span>
             </div>
-            <img className="hidden md:block w-52 " src="imgs/welcome.png" alt="" />
+            <img className="hidden md:block w-52 " src={welcome} alt="" />
           </div>
           <img
             src="imgs/avatar.png "
