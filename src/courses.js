@@ -14,7 +14,7 @@ const Courses = () => {
             <h3>Mastering Web Design</h3>
             <p>
               Master The Art Of Web Designing And Mocking, Prototyping And Creating Web
-              Design Architecture
+              Design Architecture 101
             </p>
           </div>
           <div className="course-info flex item-center justify-between">
