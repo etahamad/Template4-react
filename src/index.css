@@ -1,0 +1,859 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold text-2xl capitalize;
+}
+.toggle-btn {
+  & input {
+    @apply absolute top-0 right-0 hidden;
+  }
+  & label {
+    @apply relative w-24 h-9 rounded-full block bg-[#d5d5d5] transition-all cursor-pointer active:outline-none;
+  }
+  & span {
+    @apply w-6 h-6 bg-white block rounded-full absolute top-1/2 left-1 transform -translate-y-1/2 flex items-center justify-center transition-all;
+    &:after {
+      content: "\f00d";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      @apply absolute text-[#d5d5d5] text-xl transition-all;
+    }
+  }
+  & label:has(input:checked) {
+    @apply bg-blueColor;
+  }
+  & label:has(input:checked) .checked {
+    left: 67px;
+    &::after {
+      content: "\f00c";
+      @apply text-blueColor text-lg;
+    }
+  }
+}
+.custom-check {
+  & input {
+    @apply absolute top-0 right-1 hidden;
+
+    &:checked + label::before {
+      transform: scale(1);
+    }
+    &:checked + label::after {
+      opacity: 0;
+    }
+  }
+  & label {
+    @apply text-lg m-1 relative cursor-pointer;
+    &::after {
+      content: "";
+      @apply absolute -left-6 w-4 h-4 rounded border-[3px] border-[#888888] top-1/2 cursor-pointer transform -translate-y-1/2 transition-all;
+    }
+    &::before {
+      content: "\f00c";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      transform: scale(0) rotate(360deg);
+
+      @apply absolute -left-6 w-5 h-5 -mt-2.5 rounded top-1/2 bg-blueColor  z-10 text-white flex items-center justify-center text-xs transition-all;
+    }
+    &:hover::after {
+      @apply border-blueColor;
+    }
+  }
+}
+.circle-rad {
+  @apply pl-5 my-5 ml-2.5;
+  & input {
+    @apply absolute top-0 right-0 hidden;
+    &:checked + label {
+      & p {
+        @apply border-blueColor;
+        & span {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+  & label {
+    @apply relative cursor-pointer ml-2.5 text-lg;
+    & p {
+      @apply absolute w-[21px] h-[21px] top-1/2 -mt-[9px] -left-[35px] border-[3px] border-shades rounded-full cursor-pointer transition-all flex items-center justify-center;
+      & span {
+        transform: scale(0);
+        @apply w-[11px] h-[11px] rounded-full cursor-pointer bg-blueColor transition-all;
+      }
+    }
+  }
+}
+.square-rad {
+  & input {
+    @apply hidden absolute top-0 right-0;
+    &:checked + label {
+      @apply text-blueColor border-blueColor;
+    }
+  }
+  & label {
+    @apply flex-col items-center text-xl p-8 border-[3px] border-[#cccccc] rounded-xl cursor-pointer;
+  }
+  & i {
+    @apply mb-4;
+  }
+}
+* {
+  @apply outline-none;
+}
+header {
+  @apply px-3;
+  grid-area: 1/2/1/2;
+}
+header > div {
+  @apply flex items-center justify-between;
+}
+header section {
+  @apply cursor-pointer relative after:absolute after:top-0 after:right-0 after:w-2 after:h-2 after:bg-red-600 after:rounded-full;
+}
+aside {
+  grid-area: 1/1/3/1;
+  @apply flex justify-start flex-col shadow-aside;
+}
+aside h2 {
+  @apply capitalize font-bold relative text-2xl tracking-[-2px] after:left-1/2 after:absolute after:w-[20px] after:h-[20px] after:bg-black after:rounded-full after:transform after:-translate-x-1/2 after:-bottom-[18px] after:border-[5px] after:border-white 
+  before:bg-black before:h-[2px] before:w-h2 before:block before:absolute before:-bottom-2.5 before:left-1/2 before:transform before:-translate-x-1/2;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: minmax(250px, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .App {
+    grid-template: 80px calc(100% - 80px) / 50px calc(100% - 50px);
+  }
+  h2 {
+    @apply !text-sm !tracking-normal;
+    &::after {
+      @apply !hidden;
+    }
+    &::before {
+      @apply !hidden;
+    }
+  }
+  aside {
+    @apply min-w-[40px];
+  }
+  aside ul span {
+    @apply hidden;
+  }
+  aside a {
+    @apply !p-2.5;
+  }
+}
+aside li {
+  @apply mb-2.5 transition-all hover:bg-hoverColor rounded-md;
+}
+aside li a {
+  @apply flex items-center py-1.5 px-4 gap-2.5 text-sm;
+}
+aside .active {
+  @apply bg-hoverColor rounded-md;
+}
+main {
+  @apply p-2.5 bg-[#f1f5f9];
+  grid-area: 2/2/3/3;
+}
+main > h1 {
+  @apply text-3xl font-bold relative mb-14 after:absolute after:w-[120px] after:h-1 after:-bottom-[20px] after:left-1 after:bg-glopH1;
+}
+.wrapper > div > h2 {
+  @apply text-3xl my-5 capitalize;
+}
+.wrapper > div > p {
+  @apply text-shades -mt-2.5 text-sm capitalize;
+}
+.draft {
+  & textarea,
+  input {
+    @apply w-full resize-none p-2.5 border-0 bg-hoverColor;
+  }
+}
+.target {
+  & > div {
+    & > div:first-of-type {
+      @apply w-[75px] h-[75px] flex items-center justify-center;
+    }
+    & > div:last-of-type {
+      @apply flex flex-col gap-[5px] grow;
+      & > span:first-of-type {
+        @apply text-shades text-sm;
+      }
+      & > span:last-of-type {
+        @apply font-bold;
+      }
+      & div {
+        @apply w-full bg-blueColor h-1;
+        & span {
+          @apply h-full bg-blueColor block relative;
+          &::after {
+            content: "";
+            left: calc(100% - 8px);
+            @apply absolute border-[7px] border-blueColor -top-3;
+            border-color: #0075ff transparent transparent transparent;
+          }
+          &::before {
+            content: "";
+            @apply absolute bg-blueColor px-2.5 py-1 rounded-md left-full -top-9 transform -translate-x-1/2 text-white text-xs;
+          }
+        }
+      }
+    }
+    &:first-of-type {
+      & > div:last-of-type {
+        & div {
+          & span {
+            &::before {
+              content: "80%";
+            }
+          }
+        }
+      }
+    }
+    &:nth-of-type(2) {
+      & > div:last-of-type {
+        & div {
+          & span {
+            &::before {
+              content: "55%";
+            }
+          }
+        }
+      }
+    }
+    &:last-of-type {
+      & > div:last-of-type {
+        & span {
+          &::before {
+            content: "75%";
+          }
+        }
+      }
+    }
+  }
+}
+.stats {
+  & p {
+    margin: -10px 0 10px 0;
+    @apply text-shades;
+  }
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    @apply grid gap-5;
+    .ticket {
+      @apply flex items-center flex-col gap-2.5 p-5 border border-shades rounded-xl min-w-[200px];
+      & i {
+        @apply text-2xl;
+      }
+      & span:first-of-type {
+        @apply font-bold text-2xl;
+      }
+      & span:last-of-type {
+        @apply text-shades text-xs;
+      }
+    }
+  }
+}
+.news {
+  & > div {
+    @apply flex flex-col md:flex-row text-center md:text-left items-center mb-1 p-2.5;
+    &:not(:last-of-type) {
+      @apply border-b border-b-hoverColor;
+    }
+    & img {
+      @apply w-[100px] rounded-md mr-2.5;
+    }
+    & div:first-of-type {
+      flex: 1;
+      & h3 {
+        @apply text-base;
+      }
+      & p {
+        @apply mt-2 text-shades text-xs my-2;
+      }
+    }
+    & div:last-of-type {
+      @apply p-1 bg-fadeColor rounded-md text-xs;
+    }
+  }
+}
+.tasks {
+  .task {
+    @apply flex items-center;
+    & div {
+      @apply grow;
+      & h3 {
+        @apply text-sm my-2 font-bold md:text-lg;
+      }
+      & p {
+        @apply mt-1 text-shades text-xs md:text-sm my-2;
+      }
+    }
+    & i.active {
+      @apply transition-all cursor-pointer hover:text-red-500;
+    }
+    &:not(:last-of-type) {
+      @apply border-b border-b-hoverColor;
+    }
+  }
+}
+.top-search {
+  & p {
+    @apply text-shades text-sm;
+  }
+  & div {
+    @apply mb-2.5 pb-2.5;
+    & span:last-of-type {
+      @apply p-2.5 bg-hoverColor rounded-md text-xs;
+    }
+  }
+}
+.upload {
+  .item {
+    @apply items-center;
+    @apply mb-2;
+    & > div:first-of-type {
+      @apply flex items-center;
+      & h3 {
+        @apply mb-1 font-normal text-sm;
+      }
+      & span {
+        @apply text-shades;
+      }
+    }
+    & > div:last-of-type {
+      @apply p-1 bg-hoverColor rounded-md text-sm;
+    }
+    & img {
+      @apply w-14 mr-2.5;
+    }
+  }
+}
+.latest-projects {
+  @apply relative;
+  & ul {
+    @apply pl-2.5 relative;
+    &::before {
+      content: "";
+      @apply absolute bg-bluehover h-4/5 w-0.5 left-[7px] top-[25px];
+    }
+    & li {
+      @apply px-2.5 py-4 relative;
+      &::before {
+        content: "";
+        @apply absolute w-3 h-3 bg-blueColor rounded-full border-2 border-white outline-2 outline outline-blueColor 
+        -left-2 top-1/2 transform -translate-y-1/2;
+      }
+      &:last-of-type::before {
+        @apply bg-white;
+      }
+      &:nth-last-of-type(2)::before {
+        animation: on 0.8s infinite linear alternate;
+      }
+    }
+  }
+  & img {
+    @apply absolute w-40 right-0 opacity-30 bottom-0;
+  }
+}
+@keyframes on {
+  100% {
+    @apply bg-white;
+  }
+}
+.remainders {
+  & div {
+    @apply relative ml-6 my-2;
+    & h3 {
+      @apply text-sm;
+    }
+    & p {
+      @apply text-xs text-shades mt-1;
+    }
+    &::after {
+      content: "";
+      @apply absolute w-2.5 h-2.5 rounded-full bg-blueColor top-1/2 transform -translate-y-1/2 -left-6;
+    }
+    &::before {
+      content: "";
+      @apply absolute h-full w-0.5 bg-blueColor -left-2;
+    }
+  }
+}
+.media-stats {
+  & > div {
+    @apply relative px-[1px] pr-2.5 pl-[60px] mb-4 items-center;
+    & p {
+      @apply my-4;
+    }
+    & a {
+      @apply text-white p-1 rounded-md text-xs text-center w-20;
+    }
+  }
+  & > div div:first-of-type {
+    @apply flex items-center;
+    & i {
+      @apply absolute left-0 text-white w-14 h-14 text-2xl flex items-center justify-center transition-all transform hover:rotate-6;
+    }
+  }
+}
+.projects-table {
+  @apply mt-2.5;
+  & img {
+    @apply w-[50px] rounded-full;
+  }
+  & > div {
+    @apply overflow-auto;
+  }
+  & table {
+    @apply w-full min-w-[1000px] border-spacing-0;
+  }
+  & thead {
+    @apply bg-hoverColor;
+    & td {
+      @apply p-2.5 font-bold;
+    }
+  }
+  & tbody {
+    & td {
+      @apply border-l border-l-hoverColor border-t border-t-hoverColor p-2.5;
+    }
+    & img {
+      @apply w-8 -mr-5 inline;
+    }
+  }
+}
+.site-control {
+  & div {
+    & p {
+      @apply text-sm -mt-2.5 text-shades;
+    }
+    & h3 {
+      @apply font-normal;
+    }
+  }
+  & textarea {
+    @apply w-full resize-none p-2.5 rounded-md mt-2.5 border border-[#cccccc];
+  }
+}
+.general-info {
+  & label {
+    @apply block text-shades my-4;
+  }
+  & input {
+    @apply block text-shades my-2.5 mb-[5px] w-full border border-[#cccccc] p-2.5 rounded-md;
+  }
+
+  & input[type="email"] {
+    @apply w-4/5 bg-[#f0f4f8] cursor-no-drop;
+  }
+  & a {
+    @apply text-blueColor text-xl;
+  }
+}
+.security-info {
+  & div {
+    & h3 {
+      @apply font-normal;
+    }
+    & p {
+      @apply text-sm text-shades;
+    }
+    & a {
+      &:not(.devices):hover {
+        @apply bg-bluehover;
+      }
+      @apply px-4 py-2.5 text-lg;
+    }
+    .devices {
+      @apply bg-hoverColor text-black;
+    }
+  }
+}
+.social-info {
+  & div {
+    @apply border border-shades bg-hoverColor rounded-md my-4;
+    & input {
+      @apply border-0 w-full bg-inherit h-[50px] pl-2.5;
+    }
+    & i {
+      @apply px-2.5 py-4 text-shades border-black border-r w-[40px] justify-center items-center transition-all;
+    }
+    &:has(input:focus) i {
+      @apply text-black;
+    }
+  }
+}
+.widgets {
+  & div {
+    @apply relative mt-[15px] mb-[25px] ml-[20px];
+  }
+}
+.backup {
+  & > div:last-of-type {
+    @apply gap-5 flex-col  border-t border-t-hoverColor pt-8;
+    & div {
+      @apply grow;
+      & label {
+        padding: 15px 0px;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .circle-rad label::before {
+    @apply mt-[-3px] -left-[29px];
+  }
+  .backup {
+    & > div:last-of-type {
+      flex-wrap: wrap;
+      & div {
+        flex-basis: 100%;
+      }
+    }
+  }
+}
+.info > div:first-of-type {
+  @apply text-center m-auto px-5 border-r border-r-hoverColor;
+  & div {
+    @apply h-2.5 bg-hoverColor;
+    & p {
+      @apply w-[70%];
+    }
+  }
+  .level {
+    @apply text-lg opacity-50;
+  }
+  & img {
+    @apply w-[120px];
+  }
+  & i {
+    color: gold;
+  }
+  .rating {
+    @apply opacity-50 text-sm;
+  }
+}
+.info > div:last-of-type {
+  @apply grow w-full;
+  & section {
+    @apply flex-wrap p-4 transition-all hover:bg-[#f5f5f5];
+    & h3 {
+      @apply basis-full mb-1 opacity-50;
+    }
+    & p {
+      margin: 5px 0;
+    }
+    & div {
+      @apply flex items-center gap-1 basis-1/4 mb-2.5;
+      & span:not(.checked) {
+        @apply opacity-50;
+      }
+    }
+    .toggle-btn {
+      & label {
+        @apply h-5 w-20;
+        & span {
+          @apply w-3 h-3 after:text-[8px];
+        }
+        &:has(input:checked) .checked {
+          left: 64px;
+        }
+      }
+    }
+  }
+  & section:not(:last-of-type) {
+    @apply border-b border-b-hoverColor;
+  }
+}
+.other-info {
+  .skills {
+    & div {
+      padding: 15px 0;
+      & span {
+        @apply text-lg px-2.5 py-[5px] bg-hoverColor rounded-md mr-[5px];
+      }
+      &:not(:last-of-type) {
+        @apply border-b border-b-hoverColor;
+      }
+    }
+  }
+  .activities {
+    & img {
+      @apply w-[60px] mr-2.5;
+    }
+    & section {
+      padding: 16.1px 0;
+      & div:last-of-type {
+        @apply md:ml-auto text-center md:text-right;
+      }
+      &:not(:last-of-type) {
+        @apply border-b border-b-hoverColor;
+      }
+      & p {
+        @apply mt-2 opacity-50;
+      }
+      & p,
+      & span {
+        margin-bottom: -4px;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .info > div:first-of-type {
+    @apply border-0 py-2.5;
+  }
+}
+@media (max-width: 1000px) {
+  .info > div:last-of-type {
+    & section {
+      @apply flex-col text-start;
+    }
+  }
+  .other-info {
+    flex-wrap: wrap;
+    & > div {
+      @apply !basis-full text-center;
+    }
+    .activities > section {
+      flex-flow: column;
+      & img {
+        margin: 0 0 5px 0;
+      }
+    }
+  }
+}
+& section {
+  .info {
+    & span {
+      @apply first-of-type:text-xl last-of-type:opacity-50;
+    }
+  }
+  & > p {
+    @apply opacity-50;
+  }
+  .team {
+    @apply my-5 py-5;
+    & img {
+      @apply first-of-type:ml-1 inline w-10 -mr-5 cursor-pointer hover:z-10 hover:relative;
+    }
+  }
+  .tags {
+    @apply border-y border-y-hoverColor py-5 my-5  md:justify-end gap-2.5 flex-wrap;
+  }
+  .progress {
+    @apply p-2.5 gap-0 md:gap-5 justify-center flex-wrap md:flex-nowrap;
+    & p {
+      @apply bg-hoverColor basis-full md:basis-auto h-2 rounded-full w-64;
+      & span {
+        @apply h-full block rounded-full;
+      }
+    }
+    & > span {
+      opacity: 0.5;
+    }
+  }
+}
+.courses-main {
+  @apply pb-5;
+  .wrapper {
+    & > div {
+      @apply relative;
+      & img:not(.instructor) {
+        @apply max-w-full w-full rounded-t-md rounded-r-md;
+      }
+      .instructor {
+        @apply absolute top-4 left-4;
+      }
+      .description {
+        @apply px-5 py-2.5;
+        & h3 {
+          @apply text-lg;
+        }
+        & p {
+          @apply opacity-50 leading-[1.8] py-2;
+        }
+      }
+      .course-info {
+        @apply relative px-2.5 py-5 border-t border-t-hoverColor;
+        .title {
+          @apply absolute left-1/2 transform -translate-x-1/2 -top-3.5;
+        }
+        & span:not(.title) {
+          @apply text-xs text-gray-500;
+        }
+      }
+    }
+  }
+}
+.friends-main {
+  .wrapper > div {
+    @apply relative;
+    & > div {
+      @apply py-3;
+    }
+    & > div:not(:last-of-type) {
+      @apply border-b border-b-hoverColor;
+    }
+    .contact {
+      @apply absolute top-2.5 left-2.5 gap-2.5 !border-0;
+      & i {
+        @apply justify-center text-shades bg-hoverColor p-2.5 transition-all cursor-pointer hover:text-white hover:bg-blueColor rounded-full;
+      }
+    }
+    .info {
+      @apply flex-col;
+      & h4 {
+        @apply m-1.5;
+      }
+      & p {
+        @apply text-sm opacity-50;
+      }
+    }
+    .more-info {
+      & span {
+        @apply block p-[5px] text-xs;
+        & i {
+          @apply mr-1;
+        }
+      }
+      & > .vip {
+        @apply ml-auto text-4xl text-orange-500 opacity-30 font-bold;
+      }
+    }
+    .control {
+      gap: 20px;
+      @apply gap-5;
+      & p {
+        @apply text-sm opacity-50;
+      }
+      & div {
+        @apply gap-1;
+      }
+      & a {
+        @apply text-sm;
+      }
+    }
+  }
+}
+.files-main {
+  & > div {
+    @apply flex-wrap md:flex-nowrap gap-5 items-start;
+  }
+  .wrapper {
+    @apply grid grow gap-5;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    .file {
+      @apply relative text-center rounded-[10px];
+      & img {
+        @apply transition-all w-20 my-5 mx-auto;
+      }
+      & p {
+        @apply my-1;
+      }
+      & i {
+        @apply absolute top-2.5 left-2.5 opacity-50;
+      }
+      & > span {
+        @apply block text-left text-xs opacity-50 my-4;
+      }
+      & > div {
+        @apply pt-2.5 mt-2.5 border-t border-t-hoverColor;
+        & span {
+          @apply text-xs opacity-50;
+        }
+      }
+      &:hover img {
+        transform: rotate(6deg);
+      }
+    }
+  }
+  .file-stats {
+    @apply -order-1 md:order-none h-[482px] px-4 py-1 min-w-[260px];
+    & > div {
+      @apply border border-hoverColor p-2.5 my-4;
+    }
+
+    & section {
+      @apply last-of-type:opacity-50 last-of-type:text-sm flex items-center gap-1;
+      & i {
+        @apply flex items-center justify-center w-10 h-10;
+      }
+      & div {
+        & span {
+          @apply first-of-type:text-sm block last-of-type:text-[11px] last-of-type:opacity-50 last-of-type:mt-1 last-of-type:font-light;
+        }
+      }
+    }
+    & a {
+      &:hover i {
+        animation: up 0.3s infinite alternate;
+      }
+    }
+  }
+}
+@keyframes up {
+  100% {
+    transform: translateY(-5px);
+  }
+}
+@media (max-width: 768px) {
+  .files-main > div {
+    & > div {
+      flex-basis: 100%;
+    }
+  }
+}
+.plans-main {
+  & section {
+    @apply p-5;
+    .head {
+      @apply text-center border-4 border-white outline-4 outline outline-white text-white p-2.5;
+      & span {
+        @apply -ml-5 text-3xl md:text-4xl;
+      }
+    }
+    .info {
+      .available::before {
+        content: "\f00c";
+        font-weight: 900;
+        font-family: "Font Awesome 6 Free";
+        @apply text-greenColor mr-2;
+      }
+      & li i {
+        @apply ml-auto text-gray-500 cursor-pointer;
+      }
+      & li:not(.available)::before {
+        content: "\f00d";
+        font-weight: 900;
+        font-family: "Font Awesome 6 Free";
+        @apply mr-2 text-redColor;
+      }
+      & li {
+        @apply py-5 border-b border-b-hoverColor;
+        & span {
+          @apply text-xs md:text-xl;
+        }
+      }
+    }
+    & a {
+      @apply my-4 px-4 py-2.5 block w-fit;
+    }
+    .active {
+      @apply text-center opacity-50 my-2;
+    }
+  }
+}
