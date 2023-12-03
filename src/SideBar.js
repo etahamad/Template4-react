@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 const SideBar = () => {
   const [activeEl, setActiveEl] = useState(null);
   const handleClick = (index) => {
     setActiveEl(index);
   };
-  useEffect(() => {
-    console.log(activeEl);
-  });
   const links = [
     {
       to: "/",
